@@ -1,0 +1,12 @@
+author: Ben Webber
+core-version: >=5.0.0
+dependents: 
+description: Add a footer showing a tiddler's links and backlinks
+license: MIT
+list: README Settings
+name: crosslinks
+plugin-type: plugin
+source: https://github.com/benwebber/tiddlywiki-plugins
+title: $:/plugins/benwebber/crosslinks
+type: application/json
+version: 0.4.0

@@ -1,0 +1,23 @@
+created: 20250308054804965
+modified: 20250309013423290
+tags: 计算机科学/Java/宋红康-2023 附件
+title: 计算机科学/Java/宋红康-2023/10.Java语言概述-JDK的选择和下载
+
+!! 什么是JDK、JRE
+
+* JDK（`J`ava `D`evelopment `K`it）：是Java程序开发工具包，包含`JRE` 和开发人员使用的工具。
+* JRE（`J`ava `R`untime `E`nvironment） ：是Java程序的运行时环境，包含`JVM` 和运行时所需要的`核心类库`。
+
+<<<.tc-big-quote
+''小结：''  
+
+JDK = JRE + 开发工具集（例如Javac编译工具等）  
+
+JRE = JVM + Java SE标准类库  
+<<<
+
+!! JDK 的下载
+
+<<<.tc-big-quote
+参考源文档，或者直接百度搜
+<<<

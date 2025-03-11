@@ -1,0 +1,128 @@
+created: 20250309044458201
+modified: 20250309044826174
+tags: 计算机科学/Java/宋红康-2023
+title: 计算机科学/Java/宋红康-2023/18.Java语言概述-两个案例的代码实现
+
+!! 案例1：个人信息输出
+
+```java
+class Exercise1{
+	public static void main(String[] args){
+		System.out.println("姓名：康师傅");
+		System.out.println();//换行操作
+		System.out.println("性别：男");
+		System.out.println("家庭住址：北京程序员聚集地：回龙观");
+	}
+}
+```
+
+!! 案例2：输出：心形
+
+结合`\n`（换行），`\t`（制表符），空格等在控制台打印出如下图所示的效果。
+
+方式一：
+
+```java
+//方式一：
+class Exercise2{
+	public static void main(String[] args){
+		System.out.print("\t");
+		System.out.print("*");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		
+		System.out.println("*");
+
+		
+		System.out.print("*");
+		System.out.print("\t");
+		//System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("I love java");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.println("*");
+
+		
+		System.out.print("\t");
+		System.out.print("*");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		
+		System.out.println("*");
+
+		
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("*");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		
+		System.out.println("*");
+
+		
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("*");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		
+		System.out.println("*");
+		
+		
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("*");
+		System.out.print("\t");
+		
+		System.out.println("*");
+
+		
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("\t");
+		System.out.print("    ");
+		System.out.print("*");
+	}
+}
+```
+
+方式二：
+
+```java
+class Exercise3{
+	public static void main(String[] args){
+		System.out.print("\t"+"*"+"\t\t\t\t\t\t\t\t\t\t\t\t"+"*"+"\t"+"\n");
+		System.out.print("*"+"\t\t"+"*"+"\t\t\t\t"+"I love Java"+"\t\t\t\t"+"*"+"\t\t\t"+"*"+"\n");
+		System.out.print("\t"+"*"+"\t\t\t\t\t\t\t\t\t\t\t\t"+"*"+"\t"+"\n");
+		System.out.print("\t\t"+"*"+"\t\t\t\t\t\t\t\t\t\t"+"*"+"\t\t"+"\n");
+		System.out.print("\t\t\t"+"*"+"\t\t\t\t\t\t\t\t"+"*"+"\t"+"\n");
+		System.out.print("\t\t\t\t"+"*"+"\t\t\t\t\t\t"+"*"+""+"\t"+"\n");
+		System.out.print("\t\t\t\t\t"+"*"+"\t\t\t\t"+"*"+""+"\t\t"+"\n");
+		System.out.print("\t\t\t\t\t\t"+"*"+"\t\t"+"*"+""+"\t\t"+"\n");
+		System.out.print("\t\t\t\t\t\t\t"+"*"+"\n");
+	}
+}
+```
