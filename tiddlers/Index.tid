@@ -1,17 +1,21 @@
 created: 20250304094646046
 list: FollowUp 计算机科学 意义构建 意义构建/行动/英语 意义构建/阅读管理 意义构建/工具/TiddlyWiki
-modified: 20250311083926732
+modified: 20250321113722508
 title: Index
 
-!! 说明
+!! ''说明''
 
 目的是成为高阶 INFJ
 
-!!! 愿景
+!! ''分类''
+
+* ChatGPT、DeepSeek：记录的是 ChatGPT、DeepSeek 的回答，此类知识应审慎使用
+
+!! ''愿景''
 
 构建起整个 INFJ 的源泉（最为处事的基准），进一步建立正常的生活秩序。
 
-!!! 线索
+!! ''线索''
 
 * [[意义构建/哲学/佛学/着相]]
 * [[意义构建/阅读管理/学习之道-乔希维茨金版/整体性思维和渐进性思维]]
@@ -23,7 +27,7 @@ title: Index
 * [[意义构建/感觉/时间感]]
 
 
-!! 最近更新（20条）
+!! ''最近更新（20条）''
 
 <$list filter="[all[tiddlers]!is[system]has[modified]sort[modified]reverse[]limit[20]]">
   <$set name="modTime" filter="[<currentTiddler>get[modified]]">

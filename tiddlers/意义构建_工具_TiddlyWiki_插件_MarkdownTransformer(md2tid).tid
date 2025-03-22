@@ -1,0 +1,40 @@
+created: 20250321091549623
+modified: 20250321092241080
+tags: 意义构建/工具/TiddlyWiki/插件
+title: 意义构建/工具/TiddlyWiki/插件/MarkdownTransformer(md2tid)
+type: text/vnd.tiddlywiki
+
+你可以使用 ''Markdown Transformer (md2tid)'' 插件将 Markdown 转换为 TiddlyWiki 语法。以下是详细的使用方法：
+
+!! ''基本用法：Markdown Tiddler 转换''
+
+# 创建一个 Markdown 类型的 Tiddler，在 `type` 字段中填写 `text/x-markdown`
+# 这时，Tiddler 顶部会出现一个转换按钮（view toolbar icon）
+# 点击该按钮，Markdown 内容会自动转换为 TiddlyWiki 语法
+ 
+!! ''进阶用法：通过消息机制转换''
+
+如果你想在自定义插件或脚本中使用 Markdown 转换功能，可以发送 `tm-md-tiddler-to-tid` 消息：
+
+```html
+<$button message="tm-md-tiddler-to-tid" param="YourMarkdownTiddlerTitle">
+  Convert Markdown
+</$button>
+```
+
+点击按钮后，`YourMarkdownTiddlerTitle` 的内容会被转换为 TiddlyWiki 语法。
+
+!! ''批量转换多个 Markdown Tiddler''
+
+如果你有多个 Markdown Tiddler（假设它们都有 `tag[markdown]`），可以批量转换：
+
+```html
+<$button>
+  <$list filter="[tag[markdown]]">
+    <$action-sendmessage $message="tm-md-tiddler-to-tid" $param=<<currentTiddler>> />
+  </$list>
+  Convert All
+</$button>
+```
+
+点击按钮后，所有带有 `tag[markdown]` 的 Tiddler 都会被转换。

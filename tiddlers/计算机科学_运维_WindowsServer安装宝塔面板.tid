@@ -1,0 +1,8 @@
+created: 20250321111328713
+modified: 20250321125900048
+tags: 计算机科学/运维
+title: 计算机科学/运维/WindowsServer安装宝塔面板
+
+下载：https://skqq.jcjydzsw.cn/index.html
+
+安装完成后显示弹窗，其中访问宝塔后台的网址是公网地址，但是由于是在虚拟机中安装的，所以需要使用虚拟机的IPV4地址来访问

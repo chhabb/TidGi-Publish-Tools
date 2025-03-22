@@ -1,0 +1,6 @@
+created: 20250322160058847
+modified: 20250322160326125
+tags: 计算机科学/运维/VMWare安装Debian/Debian安装1Panel/1Panel一键部署功能/一键部署nextcloud
+title: 计算机科学/运维/VMWare安装Debian/Debian安装1Panel/1Panel一键部署功能/一键部署nextcloud/nextcloud初始化/数据库配置
+
+数据库的 ip 应该是 镜像 ID + 端口号，因为 1Panel 是使用 Docker 部署数据库的
