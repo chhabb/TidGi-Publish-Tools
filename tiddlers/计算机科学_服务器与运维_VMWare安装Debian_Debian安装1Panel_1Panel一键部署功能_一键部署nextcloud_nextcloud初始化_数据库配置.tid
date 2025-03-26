@@ -1,0 +1,22 @@
+created: 20250322160058847
+modified: 20250324131649036
+tags: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel/1Panel一键部署功能/一键部署nextcloud DeepSeek
+title: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel/1Panel一键部署功能/一键部署nextcloud/nextcloud初始化/数据库配置
+
+NextCloud 初始化的数据库配置有三种连接方式：
+
+''第一种：''
+
+通过 1Panel 自定义网络的 ''IP'' 和 ''端口''连接
+
+''第二种：''
+
+通过''容器名''和''端口''连接
+
+''第三种：''
+
+通过服务器本身的 ''IP'' 和''端口''连接，需要在创建 mysql 容器时勾选允许外部访问。
+
+!! 细节梳理
+
+1Panel 默认会将通过其界面部署的容器添加到同一个 Docker ''自定义网络''中（而非默认的 bridge 网络）。这是为了简化容器间的通信，确保它们可以通过容器名称直接互相访问。通过 `docker network ls` 可以查看所有的 Docker 网络，其中就有一个 `1panel-network` 即为 1Panel 创建的自定义网络。自定义网络会自动解析 DNS，实现同一网络内的容器可以直接通过容器名或服务名通信（如 mysql-container:3306）。且自定义网络默认隔离，只有同一网络的容器可以互相通信。

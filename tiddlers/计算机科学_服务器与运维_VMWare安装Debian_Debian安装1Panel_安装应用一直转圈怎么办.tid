@@ -1,0 +1,14 @@
+created: 20250324114836164
+modified: 20250324115235420
+tags: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel
+title: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel/安装应用一直转圈怎么办
+
+一直转圈没有安装成功时，1Panel 本身无法对服务进行任何操作，需要重启再尝试重建服务
+
+''重启 1Panel''
+
+sudo systemctl restart 1panel
+
+''重建服务''
+
+应用商店->已安装->选择对应的服务点击''“重建”''

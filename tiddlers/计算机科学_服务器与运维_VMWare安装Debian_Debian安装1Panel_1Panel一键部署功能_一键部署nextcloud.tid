@@ -1,0 +1,6 @@
+created: 20250322160016650
+modified: 20250324115412414
+tags: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel/1Panel一键部署功能
+title: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel/1Panel一键部署功能/一键部署nextcloud
+
+服务安装成功后会自动启动，此时需要在云服务器配置安全组规则放行对应端口，才可以在外部访问该服务

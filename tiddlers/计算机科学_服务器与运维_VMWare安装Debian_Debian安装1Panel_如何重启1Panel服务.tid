@@ -1,0 +1,6 @@
+created: 20250324114757679
+modified: 20250324114824931
+tags: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel
+title: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装1Panel/如何重启1Panel服务
+
+sudo systemctl restart 1panel
