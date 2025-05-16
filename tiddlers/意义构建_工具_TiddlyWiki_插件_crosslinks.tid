@@ -1,0 +1,13 @@
+created: 20250514095346718
+modified: 20250514095420325
+tags: 意义构建/工具/TiddlyWiki/插件
+title: 意义构建/工具/TiddlyWiki/插件/crosslinks
+
+crosslinks 插件 会在每一个非系统条目（non-system tiddler）的底部添加一个页脚（footer），用来显示：
+
+* links（references）：这个条目链接到的其他条目
+* backlinks（citations）：其他条目链接到这个条目
+
+换句话说，crosslinks 插件会自动为每个普通笔记条目生成一段信息区，列出它的“出链”和“入链”，帮助你查看一个条目的连接关系，形成一个更清晰的知识网络。
+
+这个功能对建立“卡片盒笔记”或“网络笔记”非常有帮助。

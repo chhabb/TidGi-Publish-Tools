@@ -1,0 +1,15 @@
+created: 20250410053255812
+modified: 20250410105430414
+tags: 意义构建/工具/Kindle
+title: 意义构建/工具/Kindle/推送失败的问题
+
+几年没用Kindle，退出国区后，近期尝试注册了美亚账号使用了邮箱推送功能遇到的关于推送失败的问题，可能的几个原因:
+
+* 邮箱被屏蔽，添加白名单即可。这种失败方式不会有任何提示。
+* 文件格式不支持，近年不支持推送 mobi 格式，使用 Calibre 转换格式即可。这种失败方式，邮箱会收到一封提示邮件。
+
+添加白名单的步骤（登录自己的国际站 amazon.com 账号）：Content Library-->Preferences-->Personal Document Settings里的Approved Personal Document E-mail List底部有一个Add a new e-mail address按钮
+
+邮箱推送支持的文件格式：PDF, DOC, DOCX, TXT, RTF, HTM, HTML, PNG, GIF, JPG, JPEG, BMP, EPUB
+
+推荐使用 QQ 邮箱（其他方式暂时没有尝试），可以保留推送的历史记录和原件。

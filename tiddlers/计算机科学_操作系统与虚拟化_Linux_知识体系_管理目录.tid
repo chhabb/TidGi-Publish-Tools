@@ -1,0 +1,53 @@
+created: 20250514204438632
+modified: 20250514214402450
+tags: 计算机科学/操作系统与虚拟化/Linux/知识体系
+title: 计算机科学/操作系统与虚拟化/Linux/知识体系/管理目录
+
+mkdir 和 rmdir 是 Linux 中用于操作目录的命令，它们主要用于创建和删除空目录。它们仅对目录有效，不能直接用于文件操作。
+
+!! ''mkdir''
+
+mkdir 命令用于创建一个或多个目录。
+
+* mkdir 目录名：创建单个目录
+* mkdir 目录名1 目录名2 目录名3：同时创建多个目录
+
+!!! ''选项''
+
+!!!! ''-p''
+
+-p 用于创建多层目录。如果上级目录不存在，mkdir 会自动创建。
+
+* mkdir -p /home/user/documents/project：这将创建 /home/user/documents/project，如果其中的 /home/user/documents 目录不存在，mkdir 会先创建它。
+
+!!!! ''-v''
+
+-v 会显示创建的目录。
+
+* mkdir -v newdir：执行完命令会输出 `mkdir: created directory 'newdir'`。
+
+!!!! ''-m''
+
+-m 指定目录的权限，使用数字表示法来设置权限（类似 chmod）。
+
+* mkdir -m 755 newdir：创建一个权限为 755 的目录 newdir。
+
+!! ''rmdir''
+
+rmdir 命令用于删除空目录。它只能删除没有任何文件或子目录的目录。如果目录中有内容，rmdir 将不会删除它，并且提示 `rmdir: 删除 'newdir/' 失败: 目录非空`。
+
+* rmdir 目录名：删除空目录
+
+!!! ''选项''
+
+!!!! ''-p''
+
+-p 用于递归删除空目录，删除时会删除包含该目录的空父目录。
+
+* rmdir -p /home/user/docs/old：如果 old、docs、user 和 home 都为空，那么执行结果将是删除所有空目录。
+
+!!!! ''-v''
+
+-v 会显示被删除的目录。
+
+* rmdir -v newdir：提示`rmdir: 正在删除目录，'newdir'`

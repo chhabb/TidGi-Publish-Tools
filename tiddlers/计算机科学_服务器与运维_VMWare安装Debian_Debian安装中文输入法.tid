@@ -1,0 +1,139 @@
+created: 20250411121340486
+modified: 20250514115723087
+tags: 计算机科学/服务器与运维/VMWare安装Debian 通义千问
+title: 计算机科学/服务器与运维/VMWare安装Debian/Debian安装中文输入法
+type: text/vnd.tiddlywiki
+
+Fcitx5 是一个现代化的输入法框架，支持多种输入法引擎。以下是安装步骤：
+
+''1. 更新系统''
+
+确保系统已更新：
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+''2. 安装 Fcitx5 及相关组件''
+
+安装 Fcitx5 和拼音输入法：
+
+```bash
+sudo apt install fcitx5 fcitx5-chinese-addons fcitx5-module-lua fcitx5-material-color -y
+```
+
+* fcitx5-chinese-addons 提供了拼音、双拼等中文输入法支持。
+* fcitx5-material-color 是一个可选的主题包，用于美化界面。
+
+''3. 设置默认输入法框架''
+
+运行以下命令将 Fcitx5 设置为默认输入法框架：
+
+```bash
+im-config -n fcitx
+```
+
+''4. 配置输入法''
+
+重启系统后，启动 Fcitx5 配置工具：
+
+```bash
+fcitx5-configtool
+```
+
+在配置界面中，点击左下角的加号 (+) 添加“Pinyin”或“Shuangpin”输入法。
+
+''5. 测试输入法''
+
+打开一个文本编辑器，按下 Ctrl + Space 切换到拼音输入法，测试是否能够正常输入中文。
+
+---
+
+如果 Fcitx5 输入法框架没有在启动时正确加载，或者相关环境变量缺失，导致快捷键无法切换输入法。以下是排查和修复的方法：
+
+---
+
+!!! 1. 检查 Fcitx5 是否在运行
+
+打开终端输入：
+
+```bash
+ps -ef | grep fcitx5
+```
+
+如果没有看到 `fcitx5` 的进程，说明它没有启动。你可以手动启动：
+
+```bash
+fcitx5 &
+```
+
+然后再尝试 `Ctrl + Space` 切换输入法。
+
+---
+
+!!! 2. 检查环境变量是否正确设置
+
+输入法框架依赖几个关键的环境变量，如果你是通过 `.xprofile`、`.bashrc`、`.profile` 设置的，有可能在某些登录环境下未生效。
+
+确保你有以下内容写入 `~/.xprofile` 或 `~/.profile`：
+
+```bash
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
+```
+
+保存后，注销并重新登录，再启动 `fcitx5`。
+
+---
+
+!!! 3. 设置开机自启动
+
+如果你使用的是 GNOME/KDE/XFCE 桌面环境，可以将 `fcitx5` 设置为开机自启动：
+
+# 打开 `~/.config/autostart` 目录（没有就创建）
+# 创建一个文件，例如 `fcitx5.desktop`，写入以下内容：
+
+```ini
+[Desktop Entry]
+Type=Application
+Exec=fcitx5
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Fcitx5
+Comment=Input Method
+```
+
+保存后重启，Fcitx5 会随系统自动启动。
+
+---
+
+!!! 4. 检查桌面环境是否干扰
+
+GNOME 默认使用 IBus，可能会覆盖 fcitx5 设置。建议你在 `~/.xprofile` 中加入以下强制设置（可配合环境变量一起用）：
+
+```bash
+export XMODIFIERS="@im=fcitx5"
+export QT_IM_MODULE="fcitx5"
+export GTK_IM_MODULE="fcitx5"
+export DefaultIMModule=fcitx5
+```
+
+然后确保 GNOME 设置中未启用 ibus 或者其它输入法。
+
+---
+
+!!! 5. 确保已安装中文输入法引擎
+
+确认你安装了中文输入法（如 `fcitx5-rime`, `fcitx5-chinese-addons`, `fcitx5-pinyin` 等）：
+
+```bash
+sudo apt install fcitx5-chinese-addons
+```
+
+然后在 `fcitx5-configtool` 中添加中文输入法，例如“拼音”或“Rime”。
+
+---
+
+如以上设置都正确，那么下次开机应该能正常通过 `Ctrl + Space` 切换。如果你需要我帮你写一个自动修复脚本，也可以继续说明。

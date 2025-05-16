@@ -1,15 +1,19 @@
 created: 20250304094646046
-list: FollowUp 计算机科学 意义构建 意义构建/行动/英语 意义构建/阅读管理 意义构建/工具/TiddlyWiki
-modified: 20250323091652336
+list: FollowUp 计算机科学 意义构建 意义构建/行动/英语 阅读管理 意义构建/工具/TiddlyWiki
+modified: 20250421142943440
 title: Index
 
 !! ''说明''
 
 目的是成为高阶 INFJ
 
+!! ''缘由''
+
+为了[[存在|意义构建/存在]]
+
 !! ''分类''
 
-* ChatGPT、DeepSeek：记录的是 ChatGPT、DeepSeek 的回答，此类知识应审慎使用
+* ChatGPT、DeepSeek、通义千问：记录的是 ChatGPT、DeepSeek 的回答，此类知识应审慎使用
 
 !! ''愿景''
 
@@ -18,11 +22,12 @@ title: Index
 !! ''路线''
 
 * [[意义构建/思维/执念]]
+* [[阅读管理]]
 
 !! ''线索''
 
 * [[意义构建/哲学/佛学/着相]]
-* [[意义构建/阅读管理/学习之道-乔希维茨金版/整体性思维和渐进性思维]]
+* [[阅读管理/学习之道-乔希维茨金版/整体性思维和渐进性思维]]
 * [[意义构建/方法/概念分化]]
 * [[意义构建/哲学/阳明心学/安心立命]]
 * [[意义构建/方法/MBTI/INFJ]]
@@ -31,9 +36,9 @@ title: Index
 * [[意义构建/感觉/时间感]]
 
 
-!! ''最近更新（20条）''
+!! ''最近更新（50条）''
 
-<$list filter="[all[tiddlers]!is[system]has[modified]sort[modified]reverse[]limit[20]]">
+<$list filter="[all[tiddlers]!is[system]has[modified]sort[modified]reverse[]limit[50]]">
   <$set name="modTime" filter="[<currentTiddler>get[modified]]">
     <li><$link to=<<currentTiddler>>><$view field="title"/>（更新时间: <<modTime>>）</$link></li>
   </$set>

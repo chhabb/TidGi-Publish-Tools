@@ -1,0 +1,8 @@
+created: 20250514100956433
+modified: 20250514101109998
+tags: 意义构建/工具/TiddlyWiki/插件
+title: 意义构建/工具/TiddlyWiki/插件/copy-on-select
+
+按住鼠标 1 秒钟，将 Wiki 中选择的内容复制到剪贴板中。
+
+在纯阅读情况下选中时会有烦人的提示，禁用即可。

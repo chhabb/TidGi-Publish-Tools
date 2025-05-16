@@ -1,0 +1,10 @@
+created: 20250513133057749
+modified: 20250513133128715
+tags: 计算机科学/操作系统与虚拟化/Linux/实际问题
+title: 计算机科学/操作系统与虚拟化/Linux/实际问题/Debian找不到info命令
+
+安装 info 包：
+
+```
+sudo apt install info
+```

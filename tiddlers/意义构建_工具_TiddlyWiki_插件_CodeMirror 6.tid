@@ -1,0 +1,6 @@
+created: 20250515074316575
+modified: 20250515074555979
+tags: 意义构建/工具/TiddlyWiki/插件
+title: 意义构建/工具/TiddlyWiki/插件/CodeMirror 6
+
+禁用 Wikitext systax highlight （experimental）选项，以禁止输入代码块时显示语言补全候选列表，写笔记时这个很烦，不如自己输入。

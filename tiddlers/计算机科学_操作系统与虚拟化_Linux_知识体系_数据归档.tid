@@ -1,0 +1,171 @@
+created: 20250515213239904
+modified: 20250516094328007
+tags: 计算机科学/操作系统与虚拟化/Linux/知识体系
+title: 计算机科学/操作系统与虚拟化/Linux/知识体系/数据归档
+
+在 Linux 中，数据归档指的是''将多个文件或目录合并打包成一个单一文件''的过程，这个打包后的文件称为“归档文件”。归档的目的并不是压缩，而是为了便于管理、备份、传输或分发多个文件。
+
+归档与压缩的区别
+
+* 归档（Archiving）：只把多个文件组合成一个文件，文件大小通常不变。常用工具是 tar。
+* 压缩（Compression）：减少文件的实际体积。常用工具是 gzip、bzip2、xz 等。
+
+这两个过程可以单独进行，也可以结合使用。比如：
+
+* tar：归档多个文件，得到一个 .tar 文件；
+* gzip 对 .tar 文件进行压缩，得到 .tar.gz 文件（也写作 .tgz）。
+
+为什么要归档
+
+* 便于传输：比如通过网络发送多个文件时，只需要发送一个归档文件。
+* 便于备份：整个目录结构、权限、时间戳都能保存下来。
+* 与压缩结合使用：节省磁盘空间。
+* 管理方便：一个文件更容易管理和记录版本。
+
+常见的归档格式
+
+* .tar：最常见的归档格式，仅打包不压缩；
+* .tar.gz / .tgz：打包后使用 gzip 压缩；
+* .tar.bz2：打包后使用 bzip2 压缩；
+* .zip：同时支持归档和压缩（但使用场景偏向跨平台，非 Linux 原生工具）。
+
+
+在 Linux 中处理多个文件时，必须先归档再压缩，而不是先压缩再归档，其核心原因在于：
+
+1. 压缩工具只能作用于单个文件
+
+例如，gzip、bzip2、xz 等压缩工具只能对一个文件进行压缩，它们并不能直接压缩“多个文件”或“一个目录结构”。
+
+所以如果你先对每个文件分别压缩，再尝试归档这些压缩文件，不仅操作繁琐，而且：
+
+* 会丢失原本的目录结构；
+* 每个文件变成一个单独的压缩包，无法统一解压；
+* 还可能因为压缩格式不同导致归档失败或管理混乱。
+
+2. 归档后压缩才能整体处理并优化压缩率
+
+先用 tar 把多个文件合并成一个 .tar 文件，再压缩成 .tar.gz，这样有以下优势：
+
+* 保持原始结构：文件夹、权限、时间戳等都能完整保留；
+* 提高压缩效率：压缩程序可以跨文件查找重复内容，整体压缩率更高；
+* 易于传输/解压：只处理一个文件，更方便解压和恢复；
+
+3. 工具设计就是这样配合的
+
+例如：
+
+```
+tar -czf archive.tar.gz mydir/
+```
+
+这个命令就是先归档（tar）再压缩（gzip），流程是连续的一步，但本质上是两步合并执行，符合 Unix 哲学：工具各司其职、组合使用。
+
+因为压缩工具只能处理一个文件，而归档工具能将多个文件合并为一个，再压缩这个“统一体”才能实现对整个结构的有效压缩。所以归档在前，压缩在后，这是最符合技术逻辑、实际效率和工具设计原则的顺序。
+
+!! ''tar''
+
+tar 是 Linux 中用于归档文件和目录的基本命令，其主要功能是将多个文件或目录打包成一个单一的归档文件（即 .tar 文件），不做压缩，仅做打包。
+
+* tar function [option] 文件或目录
+** 文件或目录：参数可以是文件路径、目录路径或目标文件名，是要打包或解包的对象
+
+!!! ''function''
+
+function 是指 tar 命令的主要操作行为，即你希望对文件或目录做什么。function 只能有一个，并且必须是第一个参数。
+
+常见的 function 有以下几种：
+
+| function | 含义             | 说明                           |
+| -------- | -------------- | ---------------------------- |
+| `c`      | create         | 创建一个新的归档文件（打包）               |
+| `x`      | extract        | 从归档文件中提取内容（解包）               |
+| `t`      | list           | 列出归档文件内容（不解包，仅查看）            |
+| `r`      | append         | 向已有 `.tar` 归档文件追加文件（不能是压缩文件） |
+| `u`      | update         | 仅追加比归档文件中内容新、且已存在的文件         |
+| `d`      | diff / compare | 比较归档文件中的文件与文件系统中的是否不同        |
+
+示例：
+
+* 表示执行创建归档的操作（打包），tar c ... 文件或目录
+* 表示解包归档文件： tar x ... 文件或目录
+* 表示查看归档中都包含哪些文件：tar t ... 文件或目录
+
+!!! ''option''
+
+options 是为了辅助功能 function 实现更精细的行为，比如要不要压缩、是否显示过程、是否排除某些文件、是否解压到指定目录等等。可以有多个，顺序没有强制要求。
+
+常用 options：
+
+| option                 | 含义                | 说明                        |
+| ---------------------- | ----------------- | ------------------------- |
+| `f`                    | file              | 指定归档文件名（必须紧跟文件名）          |
+| `v`                    | verbose           | 显示详细处理过程（逐行列出打包/解包的文件）    |
+| `z`                    | gzip              | 使用 gzip 压缩或解压（`.gz` 后缀）   |
+| `j`                    | bzip2             | 使用 bzip2 压缩或解压（`.bz2` 后缀） |
+| `J`                    | xz                | 使用 xz 压缩或解压（`.xz` 后缀）     |
+| `C`                    | directory         | 进入指定目录再进行操作（例如解压到该目录）     |
+| `--exclude=PATTERN`    | 排除模式              | 打包时跳过指定文件或目录              |
+| `--strip-components=N` | 解压时剥离路径的前 N 层目录结构 |                           |
+| `--wildcards`          | 支持通配符匹配文件名        |                           |
+| `--no-same-owner`      | 解包时不恢复原文件属主       |                           |
+
+示例：
+
+* tar -czvf backup.tar.gz mydir/
+** c 是 function，表示创建归档
+** z 表示使用 gzip 压缩
+** v 表示显示打包过程
+** f 指定归档文件名为 backup.tar.gz
+** mydir/ 是被打包的对象
+
+!!! 完整示例
+
+* 创建 .tar 文件（不压缩）：tar -cvf archive.tar file1 file2 dir1，将 file1、file2 和 dir1 打包为 archive.tar，不压缩。
+* 解包 .tar 文件：tar -xvf archive.tar，将 archive.tar 解包到当前目录。
+* 创建 .tar.gz 文件（gzip 压缩）：tar -czvf archive.tar.gz file1 dir2，打包并用 gzip 压缩，生成 archive.tar.gz。
+* 解包 .tar.gz 文件：tar -xzvf archive.tar.gz，解压 .tar.gz 文件。
+* 创建 .tar.bz2 文件（bzip2 压缩）：tar -cjvf archive.tar.bz2 dir3
+* 创建 .tar.xz 文件（xz 压缩）：tar -cJvf archive.tar.xz dir4
+* 查看归档文件内容：tar -tvf archive.tar.gz，列出压缩包内的文件结构，但不解压。
+* 解包到指定目录：tar -xvf archive.tar.gz -C /target/path/，将归档内容解压到 /target/path/。
+* 只解压归档中的某个文件：tar -xzvf archive.tar.gz path/in/archive/file.txt
+* 排除特定文件或目录：tar --exclude='*.log' -czvf backup.tar.gz mydir/，打包 mydir 目录，但排除所有 .log 文件。
+* 增量归档（更新已有的归档）：tar -rvf archive.tar newfile，向已有 archive.tar 添加 newfile。注意：不能对已压缩归档追加，只能对 .tar 文件追加。
+
+典型命令速查：
+
+| 功能         | 命令                                     |
+| ---------- | -------------------------------------- |
+| 创建 tar     | `tar -cvf file.tar dir/`               |
+| 创建 tar.gz  | `tar -czvf file.tar.gz dir/`           |
+| 创建 tar.bz2 | `tar -cjvf file.tar.bz2 dir/`          |
+| 解压 tar     | `tar -xvf file.tar`                    |
+| 解压 tar.gz  | `tar -xzvf file.tar.gz`                |
+| 解压 tar.bz2 | `tar -xjvf file.tar.bz2`               |
+| 查看内容       | `tar -tvf file.tar.gz`                 |
+| 解压到目录      | `tar -xvf file.tar.gz -C /path/to/dir` |
+
+!!! ''命令风格''
+
+在 tar 命令中，function 和 option 都可以带短横线 -，也可以不带。这取决于使用的风格：
+
+* 合法写法一（传统风格，不带短横线）：tar czvf archive.tar.gz dir/，这是最常见的用法，不带短横线，直接将 function 和 options 连在一起。
+* 合法写法二（GNU 风格，带短横线）：tar -czvf archive.tar.gz dir/，这和上面完全一样，只是加了一个短横线。这种风格更像其他 Linux 命令（如 ls -l、cp -r 等），因此也被广泛接受。
+* 合法写法三（分开的形式，每个 option 单独写）：tar -c -z -v -f archive.tar.gz dir/，这在功能上也一样，只是写得更详细，不推荐日常使用，但便于教学和理解。
+* 非法写法（部分带短横线，混乱拼接）：tar -c z v f archive.tar.gz dir/，这是错误写法，因为：第一，-c 是可以的，但后面的 z、v、f 不带 -，会被识别为文件或目录，第二，不能在 function 和 options 之间断开、错用短横线。
+
+!!! ''补充''
+
+选项 f 必须存在，且其后必须紧跟归档文件名，否则 tar 会把该文件名当成要打包的目标对象。
+
+例如以下是错误的：
+
+```
+tar -cv archive.tar file1
+```
+
+tar 会认为 archive.tar 是被打包的文件，而不是目标文件名，必须写成：
+
+```
+tar -cvf archive.tar file1
+```
